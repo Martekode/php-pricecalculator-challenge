@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-
+require_once ('vendor/autoload.php');
 //include all your model files here
 require 'Model/User.php';
 //include all your controllers here
@@ -17,3 +17,4 @@ if(isset($_GET['page']) && $_GET['page'] === 'info') {
 
 
 $controller->render($_GET, $_POST);
+require 'controller/code.php';
