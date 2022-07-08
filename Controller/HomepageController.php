@@ -1,13 +1,19 @@
 <?php
 declare(strict_types = 1);
-
+require 'Model/dbLoader.php';
 class HomepageController
 {
+    private DBLoader $dbLoader;
     //render function with both $_GET and $_POST vars available if it would be needed.
+    public function __construct(){
+        $this->dbLoader = new DBLoader();
+    }
     public function render(array $GET, array $POST)
     {
         //this is just example code, you can remove the line below
         $user = new User('John Smith');
+        
+        $sqlResult = $this->dbLoader->getConn()->query("select name,price from product");
 
         // you should not echo anything inside your controller - only assign vars here
         
