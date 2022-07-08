@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 class DBLoader {
   private string $dbname;
   private string $username;

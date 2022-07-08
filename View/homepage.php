@@ -1,5 +1,4 @@
-<?php require 'includes/header.php';
-      require 'Model/Products.php';?>
+<?php require 'includes/header.php';?>
 
 <!-- this is the view, try to put only simple if's and loops here.
 Anything complex should be calculated in the model -->
@@ -10,13 +9,23 @@ Anything complex should be calculated in the model -->
 
     <p>Put your content here.</p>
 </section>
-<?php
-$productArray = [];
-    while ($row = $sqlResult->fetch()) {
-        //  print "<p>Name: {$row[0]} {$row[1]}</p>";
-        
-        $productArray[]= new Products($row[0],$row[1]);
-    }
-    var_dump($productArray);
-?>
+<h2>pick your product</h2>
+<select name="products" id="cars">
+    <?php
+        foreach ($productArray as $product) {
+            $name = ucfirst($product->getName());
+            echo "<option value=".$name.">" . $name . "</option>";
+        }
+    ?>
+</select>
+<h2>select the customer</h2>
+<select name="customers" id="customers">
+    <?php
+        foreach ($customerArray as $customer) {
+            $name = ucfirst($customer->getFirstName());
+            $lastName = ucfirst($customer->getLastName());
+            echo "<option value=".$name." ".$lastName . ">" . $name." ". $lastName . "</option>";
+        }
+    ?>
+</select>
 <?php require 'includes/footer.php'?>

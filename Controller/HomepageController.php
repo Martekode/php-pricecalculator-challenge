@@ -1,6 +1,8 @@
 <?php
 declare(strict_types = 1);
-require 'Model/dbLoader.php';
+require 'Model/DBLoader.php';
+require 'Model/Product.php';
+require 'Model/Customer.php';
 class HomepageController
 {
     private DBLoader $dbLoader;
@@ -13,7 +15,17 @@ class HomepageController
         //this is just example code, you can remove the line below
         $user = new User('John Smith');
         
-        $sqlResult = $this->dbLoader->getConn()->query("select name,price from product");
+        $productsResult = $this->dbLoader->getConn()->query("select name,price from product");
+        $customerResult = $this->dbLoader->getConn()->query("select * from customer order by lastname");
+        $productArray = [];
+        while ($row = $productsResult->fetch()) {
+        //  print "<p>Name: {$row[0]} {$row[1]}</p>";
+        $productArray[]= new Product($row[0],$row[1]);
+        }
+        $customerArray = [];
+        while ($row = $customerResult->fetch()) {
+            $customerArray[]= new Customer($row[1],$row[2]);
+        }
 
         // you should not echo anything inside your controller - only assign vars here
         

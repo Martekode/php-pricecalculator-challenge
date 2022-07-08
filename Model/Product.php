@@ -1,5 +1,5 @@
 <?php declare(strict_types = 1);
-class Products{
+class Product{
    private string $name;
    private int $price;
 
@@ -7,4 +7,5 @@ class Products{
     $this->name = $name;
     $this->price = $price;
     }
+    public function getName() { return $this->name; }
 }
