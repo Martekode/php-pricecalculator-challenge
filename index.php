@@ -1,6 +1,7 @@
 <?php
+
 declare(strict_types=1);
-require_once ('vendor/autoload.php');
+require_once('vendor/autoload.php');
 //include all your model files here
 require 'Model/User.php';
 //include all your controllers here
@@ -13,8 +14,7 @@ require 'Controller/InfoController.php';
 //this file should never be more than 20 lines of code!
 
 $controller = new HomepageController();
-if(isset($_GET['page']) && $_GET['page'] === 'info') {
+if (isset($_GET['page']) && $_GET['page'] === 'info') {
     $controller = new InfoController();
 }
 $controller->render($_GET, $_POST);
-

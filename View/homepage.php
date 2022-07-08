@@ -1,31 +1,48 @@
-<?php require 'includes/header.php';?>
+<?php require 'includes/header.php'; ?>
 
 <!-- this is the view, try to put only simple if's and loops here.
 Anything complex should be calculated in the model -->
 <section>
-    <h4>Hello <?php echo $user->getName()?>,</h4>
+    <h4>Hello <?php echo $user->getName() ?>,</h4>
 
     <p><a href="index.php?page=info">To info page</a></p>
 
     <p>Put your content here.</p>
 </section>
 <h2>pick your product</h2>
-<select name="products" id="cars">
-    <?php
+<form method="post">
+    <select name="products" id="cars">
+
+        <?php
         foreach ($productArray as $product) {
             $name = ucfirst($product->getName());
-            echo "<option value=".$name.">" . $name . "</option>";
+            $id = ucfirst($product->getId());
+            echo "<option value='" . $id . "'>" . $name . "</option>";
         }
-    ?>
-</select>
-<h2>select the customer</h2>
-<select name="customers" id="customers">
-    <?php
+        ?>
+
+    </select>
+    <h2>select the customer</h2>
+
+    <select name="customers" id="customers">
+
+        <?php
         foreach ($customerArray as $customer) {
-            $name = ucfirst($customer->getFirstName());
+            $firstName = ucfirst($customer->getFirstName());
             $lastName = ucfirst($customer->getLastName());
-            echo "<option value=".$name." ".$lastName . ">" . $name." ". $lastName . "</option>";
+            $id = ucfirst($customer->getId());
+            echo "<option value=" . $id . ">" . $firstName . " " . $lastName . "</option>";
         }
-    ?>
-</select>
-<?php require 'includes/footer.php'?>
+        ?>
+    </select>
+    <br><button name="submit">show price</button>
+    <h1>
+        <?php
+        if (isset($POST['submit'])) {
+            echo $productDetails['name'] . "<br>";
+            echo "€ " . $productDetails['price'] / 100;
+        }
+        ?>
+    </h1>
+</form>
+<?php require 'includes/footer.php' ?>
