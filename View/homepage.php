@@ -44,5 +44,13 @@ Anything complex should be calculated in the model -->
         }
         ?>
     </h1>
+    <p>after discounts:</p>
+    <h1 style="color:green;">
+        <?php
+        if (isset($POST['submit'])) {
+            echo "€ " . $outcome;
+        }
+        ?>
+    </h1>
 </form>
 <?php require 'includes/footer.php' ?>

@@ -28,11 +28,69 @@ class HomepageController
         while ($row = $customerResult->fetch()) {
             $customerArray[] = new Customer($row[0], $row[1], $row[2]);
         }
+        function bestFixedDiscount(int $discountOne, int $discountTwo)
+        {
+            $bestDiscount = 0;
+            if ($discountOne > $discountTwo) {
+                $bestDiscount = $discountOne;
+            } else {
+                $bestDiscount = $discountTwo;
+            }
+            return $bestDiscount;
+        }
+        function bestVariableDiscount(int $discountOne, int $discountTwo)
+        {
+            $bestDiscount = 0;
+            if ($discountOne > $discountTwo) {
+                $bestDiscount = $discountOne;
+            } else {
+                $bestDiscount = $discountTwo;
+            }
+            return $bestDiscount;
+        }
+        function calculatePrice(int $fixed, int $variable, int $productPrice)
+        {
+            $outcomePrice = 0;
+            $euroProductPrice = $productPrice / 100;
+            $fixedDisPrice = $euroProductPrice - $fixed;
+            $varDisPrice = $euroProductPrice - (($euroProductPrice / 100) * $variable);
+            if ($fixedDisPrice > $varDisPrice) {
+                $outcomePrice = $varDisPrice;
+                return $outcomePrice;
+            } else {
+                $outcomePrice = $fixedDisPrice;
+                return $outcomePrice;
+            }
+        }
+
+        $allDiscounts = [];
         if (isset($POST['submit'])) {
-            var_dump($POST['products']);
+            var_dump($POST);
             $productFetch = $this->dbLoader->getConn()->query("select price, name from product where id =" . $POST['products']);
+            $customerFetch = $this->dbLoader->getConn()->query("select group_id,fixed_discount,variable_discount from customer where id =" . $POST['customers']);
+            $customerDetails = $customerFetch->fetch();
             $productDetails = $productFetch->fetch();
+            $groupDiscountFetch = $this->dbLoader->getConn()->query("select fixed_discount,variable_discount from customer_group where id =" . $customerDetails['group_id']);
+            $groupDiscountDetails = $groupDiscountFetch->fetch();
+            $allDiscounts['fixed_discount'] = $customerDetails['fixed_discount'];
+            $allDiscounts['variable_discount'] = $customerDetails['variable_discount'];
+            $allDiscounts['group_fixed_discount'] = $groupDiscountDetails['fixed_discount'];
+            $allDiscounts['group_variable_discount'] = $groupDiscountDetails['variable_discount'];
             var_dump($productDetails);
+            var_dump($customerDetails);
+            var_dump($allDiscounts);
+            foreach ($allDiscounts as $type => $discount) {
+                if ($discount == null) {
+                    $allDiscounts[$type] = 0;
+                }
+            }
+            var_dump($allDiscounts);
+            $bestFixedDiscount = bestFixedDiscount($allDiscounts['fixed_discount'], $allDiscounts['group_fixed_discount']);
+            $bestVariableDiscount = bestVariableDiscount($allDiscounts['variable_discount'], $allDiscounts['group_variable_discount']);
+            var_dump($bestFixedDiscount);
+            var_dump($bestVariableDiscount);
+            $outcome = calculatePrice($bestFixedDiscount, $bestVariableDiscount, $productDetails['price']);
+            var_dump($outcome);
         }
         // you should not echo anything inside your controller - only assign vars here
 
