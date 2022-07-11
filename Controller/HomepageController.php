@@ -66,9 +66,9 @@ class HomepageController
 
         if (isset($POST['submit'])) {
             var_dump($POST);
-            $productDetails = $this->dbLoader->productFetch($POST);
-            $customerDetails = $this->dbLoader->customerFetch($POST);
-            $groupDiscountDetails = $this->dbLoader->groupDiscountFetch($customerDetails);
+            $productDetails = $this->dbLoader->productFetch($POST['products']);
+            $customerDetails = $this->dbLoader->customerFetch($POST['customers']);
+            $groupDiscountDetails = $this->dbLoader->groupDiscountFetch($customerDetails['group_id']);
             $priceHandler = new PriceHandler($productDetails, $customerDetails, $groupDiscountDetails);
             $priceHandler->refactorDiscounts();
             $priceHandler->bestFixedDiscount();
