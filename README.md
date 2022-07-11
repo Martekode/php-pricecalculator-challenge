@@ -30,6 +30,13 @@ first we started with the selection dropdown menus.
         }
 ```
 
+- ## refactored
+
+```php
+$productsResult = $this->dbLoader->productResult();
+$customerResult = $this->dbLoader->customerResult();
+```
+
 this pull the info from the database and loops over the returned value, its gonna make a new object for every value from what was returned. this is pushed into an array so we can use that in the view.
 
 - ## the view
