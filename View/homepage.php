@@ -1,4 +1,4 @@
-<?php require 'includes/header.php'; require 'Model/Product.php';?>
+<?php require 'includes/header.php';?>
 
 <!-- this is the view, try to put only simple if's and loops here.
 Anything complex should be calculated in the model -->
@@ -12,14 +12,38 @@ Anything complex should be calculated in the model -->
 
 
 
-<?php
-$productArray = [];
-while ($row = $sqlResult->fetch()) {
-    //  print "<p>Name: {$row[0]} {$row[1]}</p>";
+<h2>Pick your product :</h2>
+<form method="post">
+<select name="product" id="cars">
+    <?php
+    foreach ($productArray as $product) {
+        $name = ucfirst($product->getName());
+        $price = ($product->getPrice());
+        echo "<option value=".$price.">" . $name . "</option>";
+    }
+    ?>
+</select>
+<h2>Select the customer :</h2>
+<select name="customers" id="customers">
+    <?php
+    foreach ($customerArray as $customer) {
+        $name = ucfirst($customer->getFirstName());
+        $lastName = ucfirst($customer->getLastName());
+        echo "<option value=".$name." ".$lastName . ">" . $name." ". $lastName . "</option>";
+    }
+    ?>
+</select>
+<br><button style="margin-top: 20px" name="submit">show price</button>
+</form>
+<h1>
+    <?php
+       if (isset($POST['submit'])) {
+            echo "Total Price : " . "€" . $POST['product']/100;
+       }
+       ?>
+</h1>
 
-    $productArray[]= new Product($row[0],$row[1]);
-}
-var_dump($productArray);
-?>
+
+
 <?php require 'includes/footer.php'?>
 

@@ -4,7 +4,6 @@ require_once('vendor/autoload.php');
 
 
 
-
 //include all your model files here
 require 'Model/User.php';
 //include all your controllers here

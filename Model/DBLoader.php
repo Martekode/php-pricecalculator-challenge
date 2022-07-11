@@ -10,7 +10,7 @@ class DBLoader {
     private PDO $conn;
 
     public function __construct() {
-        $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__,1),".env");
+        $dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__),".env");
         $dotenv->load();
         $this->dbname = $_ENV['DB_NAME'];
         $this->username = $_ENV['USER_NAME'];
@@ -29,6 +29,7 @@ class DBLoader {
     public function getConn() {
         return $this->conn;
     }
+
 }
 
 

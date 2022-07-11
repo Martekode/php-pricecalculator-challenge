@@ -1,6 +1,8 @@
 <?php
 declare(strict_types = 1);
 require 'Model/DBLoader.php';
+require 'Model/Product.php';
+require 'Model/Customer.php';
 
 class HomepageController
 {
@@ -17,7 +19,25 @@ class HomepageController
     {
         //this is just example code, you can remove the line below
         $user = new User('John Smith');
-        $sqlResult = $this->dbLoader->getConn()->query("select name,price from product");
+        $sqlResult = $this->dbLoader->getConn()->query("select  name, price from product");
+        $customerResult = $this->dbLoader->getConn()->query("select firstname, lastname from customer order by lastname");
+
+
+
+//        Fetch Product
+        $productArray = [];
+        while ($row = $sqlResult->fetch()) {
+            //  print "<p>Name: {$row[0]} {$row[1]}</p>";
+
+            $productArray[]= new Product($row[0],$row[1]);
+        }
+//        Fetch Customer
+        $customerArray = [];
+        while ($row = $customerResult->fetch()) {
+            $customerArray[]= new Customer($row[0],$row[1]);
+        }
+
+
 
         // you should not echo anything inside your controller - only assign vars here
         

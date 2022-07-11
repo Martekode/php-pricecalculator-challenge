@@ -1,14 +1,27 @@
 <?php
 declare(strict_types=1);
-
-class Product {
+class Product
+{
     private string $name;
-    private int $price;
+    private  $price;
 
-    public function __construct(string $name, int $price)
+
+    public function __construct( string $name,   $price)
     {
+
         $this->name = $name;
         $this->price = $price;
+
     }
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
 
 }
