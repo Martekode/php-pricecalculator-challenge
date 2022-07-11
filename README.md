@@ -160,3 +160,44 @@ class Customer
 this is already a hint we didn't do everything optimally sinds there is a lot that i don't use in here. But that's good to remember for the next time.
 
 ## step 4
+
+after that we wanted to search specifically for the values that is selected from those dropdown menus. so put everything in a form as given in the snippit above. so we also made a button and some logic for it.
+
+---
+
+the code below is the final cut... this has been refactored and is by all means not how we started. alot of it started as loose code. this is the refactored version.
+
+- ## homepage controller
+
+```php
+if (isset($POST['submit'])) {
+        var_dump($POST);
+        $productDetails = $this->dbLoader->productFetc($POST);
+        $customerDetails = $this->dbLoader->customerFetc($POST);
+        $groupDiscountDetails =$this->dbLoader->groupDiscountFetch($customerDetails);
+        $priceHandler = new PriceHandler($productDetails,$customerDetails, $groupDiscountDetails);
+        $priceHandler->refactorDiscounts();
+        $priceHandler->bestFixedDiscount();
+        $priceHandler->bestVariableDiscount();
+        $priceHandler->calculatePrice();
+        $productDetails = $priceHandler->getProductDetails();
+        $outcome = $priceHandler->getOutcome();
+}
+```
+
+- ## the view
+
+```php
+<h1>
+    <?php
+    if (isset($POST['submit'])) {
+        echo $productDetails['name'] . "<br>";
+        echo "€ " . $productDetails['price'] / 100;
+    }
+    ?>
+</h1>
+```
+
+i place the name and the price in an h1 tag. this is the price from the product. some of the logic in the button if isset will be explained when we explain the classes.
+
+## step 5
