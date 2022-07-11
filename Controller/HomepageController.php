@@ -18,8 +18,8 @@ class HomepageController
         //this is just example code, you can remove the line below
         $user = new User('John Smith');
 
-        $productsResult = $this->dbLoader->getConn()->query("select id,name,price from product");
-        $customerResult = $this->dbLoader->getConn()->query("select id,firstname,lastname from customer order by firstname");
+        $productsResult = $this->dbLoader->productResult();
+        $customerResult = $this->dbLoader->customerResult();
         $productArray = [];
         while ($row = $productsResult->fetch()) {
             //  print "<p>Name: {$row[0]} {$row[1]}</p>";

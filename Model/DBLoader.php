@@ -50,4 +50,14 @@ class DBLoader
     $b = $a->fetch();
     return $b;
   }
+  public function productResult()
+  {
+    $a = $this->getConn()->query("select id,name,price from product");
+    return $a;
+  }
+  public function customerResult()
+  {
+    $a = $this->getConn()->query("select id,firstname,lastname from customer order by firstname");
+    return $a;
+  }
 }

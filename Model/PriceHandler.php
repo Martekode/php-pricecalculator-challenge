@@ -8,6 +8,7 @@ class PriceHandler
     private array $groupDiscountDetails;
     private array $allDiscounts;
     private int $bestFixedDiscount;
+    private int $bestVariableDiscount;
     private float $outcome;
 
     public function __construct(array $productDetails, array $customerDetails, array $groupDiscountDetails)
