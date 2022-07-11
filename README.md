@@ -403,3 +403,10 @@ here we are going to display the new price to the user
 ```
 
 given some green color to differentiate.
+
+# conclusions:
+
+- i learned alot from this
+- i struggled the most with getting everything connected to each other
+- i realise that it's easy to lose yourself in all these files and creating things that are perhaps unneccesary and conveluded.
+- - for expample: i realise that i fetch too many times, for example the product price and name are fetched twice wich isn't needed. i kept it like this because it is a good reminder for me and others that might look at it. it's important that u know that i know it could be better. i could just paste the price directly in the option value="" and i would get it back in the post. i took an extra step wich i didn't see at the time.
