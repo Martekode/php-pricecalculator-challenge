@@ -376,4 +376,23 @@ here we do the same thing for the variable_discounts.
 
 ---
 
-here we take the best values as parameters and the productPrice too. we calculate accordingly to find the best value for our user. if the outcome happens to bed less then 0 then set it to 0. we are not going to pay them.
+here we take the best values as parameters and the productPrice too. we calculate accordingly to find the best value for our user. if the outcome happens to be less then 0 then set it to 0. we are not going to pay them.
+
+## step 7
+
+here we are going to display the new price to the user
+
+- ## the view
+
+```php
+<p>after discounts:</p>
+<h1 style="color:green;">
+    <?php
+    if (isset($POST['submit'])) {
+        echo "€ " . $outcome;
+    }
+    ?>
+</h1>
+```
+
+given some green color to differentiate.
