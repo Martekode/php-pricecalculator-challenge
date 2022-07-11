@@ -68,10 +68,16 @@ class HomepageController
             var_dump($POST);
             $productDetails = $this->dbLoader->productFetch($POST);
             $customerDetails = $this->dbLoader->customerFetch($POST);
-            // $productDetails = $productFetch->fetch();
             $groupDiscountDetails = $this->dbLoader->groupDiscountFetch($customerDetails);
-            // $groupDiscountDetails = $groupDiscountFetch->fetch();
             $priceHandler = new PriceHandler($productDetails, $customerDetails, $groupDiscountDetails);
+            $priceHandler->refactorDiscounts();
+            $priceHandler->bestFixedDiscount();
+            $priceHandler->bestVariableDiscount();
+            $priceHandler->calculatePrice();
+            $productDetails = $priceHandler->getProductDetails();
+            $outcome = $priceHandler->getOutcome();
+            // $productDetails = $productFetch->fetch();
+            // $groupDiscountDetails = $groupDiscountFetch->fetch();
             // $allDiscounts['fixed_discount'] = $customerDetails['fixed_discount'];
             // $allDiscounts['variable_discount'] = $customerDetails['variable_discount'];
             // $allDiscounts['group_fixed_discount'] = $groupDiscountDetails['fixed_discount'];
@@ -84,12 +90,7 @@ class HomepageController
             //         $allDiscounts[$type] = 0;
             //     }
             // }
-            $priceHandler->refactorDiscounts();
-            $priceHandler->bestFixedDiscount();
-            $priceHandler->bestVariableDiscount();
-            $priceHandler->calculatePrice();
-            $productDetails = $priceHandler->getProductDetails();
-            $outcome = $priceHandler->getOutcome();
+
 
 
             // var_dump($allDiscounts);

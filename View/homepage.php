@@ -36,21 +36,22 @@ Anything complex should be calculated in the model -->
         ?>
     </select>
     <br><button name="submit">show price</button>
-    <h1>
-        <?php
-        if (isset($POST['submit'])) {
-            echo $productDetails['name'] . "<br>";
-            echo "€ " . $productDetails['price'] / 100;
-        }
-        ?>
-    </h1>
-    <p>after discounts:</p>
-    <h1 style="color:green;">
-        <?php
-        if (isset($POST['submit'])) {
-            echo "€ " . $outcome;
-        }
-        ?>
-    </h1>
 </form>
+<h1>
+    <?php
+    if (isset($POST['submit'])) {
+        echo $productDetails['name'] . "<br>";
+        echo "€ " . $productDetails['price'] / 100;
+    }
+    ?>
+</h1>
+<p>after discounts:</p>
+<h1 style="color:green;">
+    <?php
+    if (isset($POST['submit'])) {
+        echo "€ " . $outcome;
+    }
+    ?>
+</h1>
+
 <?php require 'includes/footer.php' ?>
