@@ -268,7 +268,7 @@ it has the makeconnection function and some functions for the fetches that we en
 
 ## step 6
 
-now that we can fetch our data and have some where values for the new fetches we can display the price and then apply the discounts:
+now that we can fetch our data and have some where-values for the new fetches we can display the price and then apply the discounts:
 
 - we get 2 discounts from the customerFetch()
 - we get 2 discounts from the groupDiscountFetch()
@@ -347,3 +347,33 @@ class PriceHandler
     }
 }
 ```
+
+1. the refactorDiscounts()
+
+---
+
+here i refactor the null values to actual 0. maybe this is not needed in an other way but sinds i use 4 different allDiscounts keys i would get different keys back if i kicked the null values out. that makes it unpredictable and hard to see what to calculate on. so i somply set them to 0 and would always have the same 4 keys in my allDiscounts array.
+
+---
+
+2. the bestFixedDiscount()
+
+---
+
+here we check the 2 fixed_discounts, the group one and the one from the customer, and spit out the best one
+
+---
+
+3. th bestVariableDiscount()
+
+---
+
+here we do the same thing for the variable_discounts.
+
+---
+
+4. the calculate()
+
+---
+
+here we take the best values as parameters and the productPrice too. we calculate accordingly to find the best value for our user. if the outcome happens to bed less then 0 then set it to 0. we are not going to pay them.
