@@ -54,6 +54,9 @@ class PriceHandler
         } else {
             $this->outcome = $fixedDisPrice;
         }
+        if ($this->outcome < 0) {
+            $this->outcome = 0;
+        }
     }
     //getters
     public function getOutcome()

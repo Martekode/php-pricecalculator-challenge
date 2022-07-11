@@ -66,13 +66,12 @@ class HomepageController
 
         if (isset($POST['submit'])) {
             var_dump($POST);
-            $productFetch = $this->dbLoader->getConn()->query("select price, name from product where id =" . $POST['products']);
-            $customerFetch = $this->dbLoader->getConn()->query("select group_id,fixed_discount,variable_discount from customer where id =" . $POST['customers']);
-            $customerDetails = $customerFetch->fetch();
+            $productDetails = $this->dbLoader->productFetch($POST);
+            $customerDetails = $this->dbLoader->customerFetch($POST);
             // $productDetails = $productFetch->fetch();
-            $groupDiscountFetch = $this->dbLoader->getConn()->query("select fixed_discount,variable_discount from customer_group where id =" . $customerDetails['group_id']);
+            $groupDiscountDetails = $this->dbLoader->groupDiscountFetch($customerDetails);
             // $groupDiscountDetails = $groupDiscountFetch->fetch();
-            $priceHandler = new PriceHandler($productFetch->fetch(), $customerDetails, $groupDiscountFetch->fetch());
+            $priceHandler = new PriceHandler($productDetails, $customerDetails, $groupDiscountDetails);
             // $allDiscounts['fixed_discount'] = $customerDetails['fixed_discount'];
             // $allDiscounts['variable_discount'] = $customerDetails['variable_discount'];
             // $allDiscounts['group_fixed_discount'] = $groupDiscountDetails['fixed_discount'];

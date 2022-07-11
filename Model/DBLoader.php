@@ -32,4 +32,22 @@ class DBLoader
   {
     return $this->conn;
   }
+  public function productFetch($POST)
+  {
+    $a = $this->getConn()->query("select price, name from product where id =" . $POST['products']);
+    $b = $a->fetch();
+    return $b;
+  }
+  public function customerFetch($POST)
+  {
+    $a = $this->getConn()->query("select group_id,fixed_discount,variable_discount from customer where id =" . $POST['customers']);
+    $b = $a->fetch();
+    return $b;
+  }
+  public function groupDiscountFetch($customerDetails)
+  {
+    $a =  $this->getConn()->query("select fixed_discount,variable_discount from customer_group where id =" . $customerDetails['group_id']);
+    $b = $a->fetch();
+    return $b;
+  }
 }
