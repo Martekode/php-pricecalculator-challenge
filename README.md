@@ -500,3 +500,5 @@ this button function would also need to redirect you to the login page.
 7. the login page
 
 ---
+
+the view would have again 2 input fields and a button 'login' in a form. when the button is hit it will check in the loginPageController wether or not if the username and password are correct. this would all need to happen regardless of wich approach i end up taking. (the customers approach or the new user registerPage approach)
