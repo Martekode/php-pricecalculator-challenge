@@ -410,3 +410,42 @@ given some green color to differentiate.
 - i struggled the most with getting everything connected to each other
 - i realise that it's easy to lose yourself in all these files and creating things that are perhaps unneccesary and conveluded.
 - - for expample: i realise that i fetch too many times, for example the product price and name are fetched twice wich isn't needed. i kept it like this because it is a good reminder for me and others that might look at it. it's important that u know that i know it could be better. i could just paste the price directly in the option value="" and i would get it back in the post. i took an extra step wich i didn't see at the time.
+
+---
+
+if i where to upgrade this project, this is what i would do..
+
+---
+
+if i wanted to add a login page i would first need to make a register page.
+
+---
+
+1. for the register page i would have a view with 2 input fields and a button.And a regsterPageController
+
+---
+
+2. in the registerPageController i would make it so that when the button is pushed that it would take the input with $POST and make a new user.
+
+---
+
+3. for this i would have to upgrade the class of user:
+
+```php
+private strong $password;
+
+public function __construct(string $name, string $password){
+    $this->password = $password;
+    $this->name = $name;
+}
+public function getPassword(){
+    return $this->password;
+}
+public function getUserName(){
+    return $this->name;
+}
+```
+
+i would pass the input from the inputfields in the constructor. i would also maybe add a unique id to the class.
+
+---
