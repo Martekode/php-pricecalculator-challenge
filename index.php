@@ -7,6 +7,7 @@ require 'Model/User.php';
 //include all your controllers here
 require 'Controller/HomepageController.php';
 require 'Controller/InfoController.php';
+require 'Controller/loginpageController.php';
 
 
 
@@ -16,5 +17,7 @@ require 'Controller/InfoController.php';
 $controller = new HomepageController();
 if (isset($_GET['page']) && $_GET['page'] === 'info') {
     $controller = new InfoController();
+} elseif (isset($_GET['page']) && $_GET['page'] === 'login') {
+    $controller = new LoginpageController();
 }
 $controller->render($_GET, $_POST);
