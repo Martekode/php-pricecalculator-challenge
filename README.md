@@ -538,5 +538,8 @@ class User
     {
         return $this->name;
     }
+    public function getPassword(): string{
+        return $this->password;
+    }
 }
 ```
