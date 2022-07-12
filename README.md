@@ -479,11 +479,13 @@ public function render(array $POST){
 
 ```php
 public function render(array $POST){
-    $incrementedID = 1;
-    userArray = [];
+    $usersfetch = file_get_contents('users.txt');
+    $userArray = json_decode($usersfetch);
+    $incrementedID = count($userArray)-1;
     if (isset($_POST['submit'])){
         $incrementedID++;
-        userArray[$incrementedID] = new User($POST['name'],$POST['password']);
+        $userArray[$incrementedID] = new User($POST['name'],$POST['password']);
+        file_put_contents('users.txt', $userArray);
     }
 }
 ```
