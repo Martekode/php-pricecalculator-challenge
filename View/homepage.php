@@ -6,6 +6,7 @@ Anything complex should be calculated in the model -->
     <h4>Hello <?php echo $user->getName() ?>,</h4>
 
     <p><a href="index.php?page=info">To info page</a></p>
+    <p><a href="index.php?page=login">login</a></p>
 
     <p>Put your content here.</p>
 </section>
