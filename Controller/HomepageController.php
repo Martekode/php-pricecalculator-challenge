@@ -5,6 +5,7 @@ require 'Model/DBLoader.php';
 require 'Model/Product.php';
 require 'Model/Customer.php';
 require 'Model/PriceHandler.php';
+
 class HomepageController
 {
     private DBLoader $dbLoader;
@@ -13,10 +14,9 @@ class HomepageController
     {
         $this->dbLoader = new DBLoader();
     }
-    public function render(array $GET, array $POST)
+    public function render(array $GET, array $POST, $user)
     {
         //this is just example code, you can remove the line below
-        $user = new User('John Smith');
 
         $productsResult = $this->dbLoader->productResult();
         $customerResult = $this->dbLoader->customerResult();

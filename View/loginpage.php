@@ -6,7 +6,7 @@
     <form method="post">
         <label for="username">Username</label>
         <select name="usernames">
-            <?php foreach ($customerArray as $customer) : ?>
+            <?php foreach ($customerArray2 as $customer) : ?>
                 <option value="<?= $customer->getName() ?>"><?= $customer->getName(); ?></option>
             <?php endforeach; ?>
         </select>
