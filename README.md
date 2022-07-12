@@ -470,3 +470,28 @@ public function render(array $POST){
     userArray = [];
 }
 ```
+
+---
+
+6. logic for the button
+
+---
+
+```php
+public function render(array $POST){
+    $incrementedID = 1;
+    userArray = [];
+    if (isset($_POST['submit'])){
+        $incrementedID++;
+        userArray[$incrementedID] = new User($POST['name'],$POST['password']);
+    }
+}
+```
+
+this button function would also need to redirect you to the login page.
+
+---
+
+7. the login page
+
+---
