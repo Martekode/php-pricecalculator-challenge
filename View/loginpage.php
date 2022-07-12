@@ -1,9 +1,21 @@
 <?php require 'includes/header.php' ?>
 <section>
-    <h4>Info page</h4>
+    <h4>login page</h4>
 
     <p><a href="index.php">Back to homepage</a></p>
+    <form method="post">
+        <label for="username">Username</label>
+        <select name="usernames">
+            <?php foreach ($customerArray as $customer) : ?>
+                <option value="<?= $customer->getName() ?>"><?= $customer->getName(); ?></option>
+            <?php endforeach; ?>
+        </select>
+        <label for="password">Password</label>
+        <input type="text" name="password">
+        <br><button name="login">Login</button>
+    </form>
+    <p>don't have an account? Make one here:</p>
+    <p><a href="index.php?page=registerpage">register</a></p>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus commodi dolores, eum ex, excepturi minus modi nostrum officia perspiciatis quaerat quam quas quia quibusdam quis, quo ratione rem saepe sed!</p>
 </section>
 <?php require 'includes/footer.php' ?>
