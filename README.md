@@ -446,6 +446,27 @@ public function getUserName(){
 }
 ```
 
-i would pass the input from the inputfields in the constructor. i would also maybe add a unique id to the class.
+i would pass the input from the inputfields in the constructor.
 
 ---
+
+4. the logic
+
+---
+
+i would be able to make a dummy id called incrementedID and ++ it everytime the button is pressed. let's assume every input field is correct then make a new customer and push it into an array.
+
+---
+
+5. example
+
+---
+
+i would have a render function of some sort that passes the $\_POST as parameter.
+
+```php
+public function render(array $POST){
+    $incrementedID = 1;
+    userArray = [];
+}
+```
