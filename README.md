@@ -502,3 +502,41 @@ this button function would also need to redirect you to the login page.
 ---
 
 the view would have again 2 input fields and a button 'login' in a form. when the button is hit it will check in the loginPageController wether or not if the username and password are correct. this would all need to happen regardless of wich approach i end up taking. (the customers approach or the new user registerPage approach)
+
+---
+
+created multiple contructors in user.php
+
+---
+
+```php
+class User
+{
+    private $name;
+    private string $password;
+
+    public function __construct()
+    {
+        $arguments = func_get_args();
+        $numberOfArguments = func_num_args();
+
+        if (method_exists($this, $function = '__construct' . $numberOfArguments)) {
+            call_user_func_array(array($this, $function), $arguments);
+        }
+    }
+    public function __construct1($name)
+    {
+        $this->name = $name;
+    }
+    public function __construct2($name, $password)
+    {
+        $this->name = $name;
+        $this->password = $password;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+}
+```
