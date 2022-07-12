@@ -492,6 +492,9 @@ public function render(array $POST){
 
 this button function would also need to redirect you to the login page.
 
+- i could also do it differently where i don't have a register page... then i would make new users out of every customer we get back from the database. i would loop over it and make new users with a default password for now.
+  then i would only need the login page and login from there.
+
 ---
 
 7. the login page
